@@ -20,25 +20,36 @@
 
     <script type="text/babel">
 
-        function ShowPersonData(props) {
-            return (
-                <div>
-                    <h2>First name: {props.firstName}</h2>
-                    <h2>Last name: {props.lastName}</h2>
-                    <h2>Age: {props.age}</h2>
-                    <h2>Full name: {props.firstName} {props.lastName}</h2>
-                </div>
-            );
-        }
+        class ShowPersonData extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    person: {
+                        firstName: "React",
+                        lastName: "JS",
+                        age: 6
+                    }
+                }
+            }
 
-        const person = {
-            firstName: "React",
-            lastName: "JS",
-            age: 6
+            fullName() {
+                return `${this.state.person.firstName} ${this.state.person.lastName}`;
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h2>First name: {this.state.person.firstName}</h2>
+                        <h2>Last name: {this.state.person.lastName}</h2>
+                        <h2>Age: {this.state.person.age}</h2>
+                        <h2>Full name: {this.fullName()}</h2>
+                    </div>
+                );
+            }
         }
 
         ReactDOM.render(
-            <ShowPersonData firstName={person.firstName} lastName={person.lastName} age={person.age} />,
+            <ShowPersonData />,
             document.querySelector("#intro")
         );
     </script>
