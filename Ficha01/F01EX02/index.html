@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REACTJS F01EX02</title>
+
+    <!-- ReactJS -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="intro"></div>
+
+    <script type="text/babel">
+
+        function ShowPersonData(props) {
+            return (
+                <div>
+                    <h2>First name: {props.firstName}</h2>
+                    <h2>Last name: {props.lastName}</h2>
+                    <h2>Age: {props.age}</h2>
+                    <h2>Full name: {props.firstName} {props.lastName}</h2>
+                </div>
+            );
+        }
+
+        const person = {
+            firstName: "React",
+            lastName: "JS",
+            age: 6
+        }
+
+        ReactDOM.render(
+            <ShowPersonData firstName={person.firstName} lastName={person.lastName} age={person.age} />,
+            document.querySelector("#intro")
+        );
+    </script>
+
+</body>
+
+</html>
