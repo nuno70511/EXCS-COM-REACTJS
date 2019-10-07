@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REACTJS F01EX04</title>
+
+    <!-- ReactJS -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="intro"></div>
+
+    <script type="text/babel">
+
+        class ProductPage extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    productName: "Computador Titan W599",
+                    productDesc: "Processador i7<br>Disco SSD 256GB<br> Monitor Samsung 21’",
+                    productImage: "https://www.titancomputers.com/v/vspfiles/photos/W599-Octane-2.jpg?v-cache=1540465720",
+                    productPrice: 1200,
+                    productAvailability: true
+                }
+                this.restorePrice = this.restorePrice.bind(this);
+                this.buy = this.buy.bind(this);
+            }
+
+            restorePrice() {
+                this.setState(prevState => {
+                    return {
+                        productPrice: 1200
+                    }
+                })
+            }
+
+            buy() {
+                this.setState(prevState => {
+                    return {
+                        productAvailability: false
+                    }
+                })
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h2>Product Name: {this.state.productName}</h2>
+                        <h2 dangerouslySetInnerHTML={{__html: "Description:<br>" + this.state.productDesc}}></h2>
+                        <img width="300px" src={this.state.productImage}></img>
+                        {
+                            this.state.productPrice < 1000 ?
+                            <div>
+                                <h2>Price: {this.state.productPrice}</h2>
+                                <button onClick={this.restorePrice}>Repor preço</button>
+                            </div> : null
+                        }
+                        {
+                            this.state.productAvailability ?
+                            <div>
+                                <h2>AVAILABLE</h2>
+                                <button onClick={this.buy}>COMPRAR</button>
+                            </div> :
+                            <div>
+                                <h2>NOT AVAILABLE</h2>
+                                <button disabled>INDISPONÍVEL</button>
+                            </div>
+                        }
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <ProductPage />,
+            document.querySelector("#intro")
+        );
+
+    </script>
+</body>
+</html>
