@@ -19,29 +19,29 @@
     <script type="text/babel">
 
         class ShowWeight extends React.Component {
-            constructor(props) {
-                super(props);
-                console.log("constructor");
+            constructor() {
+                super();
+                this.state = {
+                    weight: 46
+                }
             }
 
             componentDidMount() {
-                console.log("mounted");
+                console.log("componentDidMount");
             }
 
             componentDidUpdate() {
-                console.log("updated");
+                console.log("componentDidUpdate");
             }
 
-            render () {
+            render() {
                 console.log("render");
-                return <h2>Peso: {this.props.weight} kgs</h2>;
+                return <h2>Peso: {this.state.weight} kgs</h2>;
             }
         }
 
-        const weight = 46;
-
         ReactDOM.render(
-            <ShowWeight weight={weight} />,
+            <ShowWeight />,
             document.querySelector("#intro")
         );
     </script>
