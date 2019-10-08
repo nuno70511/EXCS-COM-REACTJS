@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REACTJS F02EX01</title>
+
+    <!-- ReactJS -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class NumberPlayground extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    number: 0
+                }
+                this.increment = this.increment.bind(this);
+                this.decrement = this.decrement.bind(this);
+            }
+
+            increment() {
+                this.setState(prevState => {
+                    return {
+                        number: prevState.number + 1
+                    }
+                })
+            }
+
+            decrement() {
+                this.setState(prevState => {
+                    return {
+                        number: prevState.number - 1
+                    }
+                })
+            }
+
+            render() {
+                return (
+                    <div>
+                        <button onClick={this.increment}>+</button>
+                        {
+                            this.state.number > 0 ?
+                            <button onClick={this.decrement}>-</button> :
+                            <button disabled>-</button>
+                        }
+                        <span>{this.state.number}</span>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <NumberPlayground />,
+            document.querySelector("#root")
+        );
+
+    </script>
+</body>
+</html>
